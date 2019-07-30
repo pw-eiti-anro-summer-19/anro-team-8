@@ -37,12 +37,17 @@
 ## to the 'chatter' topic
 
 import rospy
+<<<<<<< HEAD
 import math 
+=======
+import math
+>>>>>>> 71e5b7f0fff7d726bb565b76372467c921f67281
 from sensor_msgs.msg import JointState
 
 def talker():
     pub = rospy.Publisher('joint_states', JointState, queue_size=10)
     rospy.init_node('talker', anonymous=True)
+<<<<<<< HEAD
     hz = 10
     rate = rospy.Rate(hz) # 10hz
     d=0.0
@@ -69,6 +74,18 @@ def talker():
         pub.publish(msg)
         rate.sleep()
         movement_cal = movement_cal - 1
+=======
+    rate = rospy.Rate(10) # 10hz
+    d = 0.0
+    while not rospy.is_shutdown():
+        msg = JointState()
+        msg.header.stamp = rospy.get_rostime()
+        msg.name = ['jiont_0', 'joint_1', 'joint_2']
+        msg.position = [math.sin(d),math.sin(d),math.sin(d)]
+        pub.publish(msg)
+        rate.sleep()
+        d = d+0.1
+>>>>>>> 71e5b7f0fff7d726bb565b76372467c921f67281
 
 if __name__ == '__main__':
     try:
